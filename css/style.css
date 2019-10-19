@@ -718,3 +718,107 @@ p {
 .category_part .cat-iphone {
     background-color:#000000;
 }
+
+.s_product_text h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2a2a2a;
+    margin-bottom: 10px;
+}
+
+.s_product_text h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff3368;
+    margin-bottom: 15px;
+}
+
+.s_product_text .list li {
+    margin-bottom: 5px;
+}
+
+.s_product_text .list li a.active {
+    color: #ff3368;
+}
+
+.s_product_text .list li a {
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    font-weight: normal;
+    color: #555555;
+}
+
+.s_product_text .list li a.active span {
+    color: #555;
+}
+
+.s_product_text .list li a span {
+    width: 90px;
+    display: inline-block;
+}
+
+.s_product_text p {
+    padding-top: 20px;
+    border-top: 1px dotted #d5d5d5;
+    margin: 20px 0;
+}
+
+.s_product_text .card_area {
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    padding: 20px 0;
+}
+
+.d-flex {
+    display: flex!important;
+}
+
+.s_product_text .product_count {
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 15px 15px;
+}
+
+.s_product_text .card_area .product_count input {
+    border: 0px solid transparent;
+    text-align: center;
+}
+
+.s_product_text .product_count .input-number {
+    display: inline-block;
+    width: 60px;
+}
+
+.s_product_text .btn_3 {
+    padding: 13px 36px;
+    box-shadow: -1.717px 8.835px 29.76px 2.24px rgba(255, 51, 104, 0.18);
+    border: 1px solid #ff3368;
+}
+
+.btn_3 {
+    display: inline-block;
+    padding: 9px 42px;
+    border-radius: 50px;
+    background-color: #ff3368;
+    border: 1px solid #ecfdff;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 400;
+    box-shadow: -1.717px 8.835px 29.76px 2.24px rgba(255, 51, 104, 0.18);
+    border: 1px solid #ff3368;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+input:hover, input:focus {
+    outline: none !important;
+}
+
+.btn_3:hover {
+    background-color: red;
+    color: #fff;
+}
