@@ -2,13 +2,14 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Ikeo</title>
+  <title>ft_apple</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <?php include("header.php"); ?>
     <?php include("banner.php"); ?>
-    <?php include("product-homepage.php"); ?>
+    <?php include("homepage-category.php"); ?>
+    <?php include("homepage-product.php"); ?>
 
 
 

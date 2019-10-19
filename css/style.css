@@ -10,7 +10,7 @@
 }
 
 .logo {
-    max-width: 150px;
+    width:30px;
 }
 
 body {
@@ -66,7 +66,18 @@ body {
     }
 }
 
-.col-large-12, .col-large-5, .col-medium-8, .col-large-3 {
+@media (min-width: 992px){
+    .col-large-5 {
+        flex: 0 0 41.666667%;
+        max-width: 41.666667%;
+    }
+}
+
+.padding_top {
+    padding-top: 140px;
+}
+
+.col-large-12, .col-large-5, .col-medium-8, .col-large-3, .col-large-7 {
     position: relative;
     width: 100%;
     padding-right: 15px;
@@ -79,9 +90,7 @@ body {
 
 @media (min-width: 992px){
     .navbar-expand-large {
-        -ms-flex-flow: row nowrap;
         flex-flow: row nowrap;
-        -ms-flex-pack: start;
         justify-content: flex-start;
     }
 }
@@ -132,9 +141,7 @@ img {
 
 @media (min-width: 992px) {
     .navbar-expand-large .navbar-collapse {
-        display: -ms-flexbox!important;
         display: flex!important;
-        -ms-flex-preferred-size: auto;
         flex-basis: auto;
     }
 }
@@ -143,12 +150,10 @@ img {
     flex-basis: 100%;
     flex-grow: 1;
     align-items: center;
-    padding-top: 1rem;
 }
 
 @media (min-width: 992px){
     .navbar-expand-large .navbar-nav {
-        -ms-flex-direction: row;
         flex-direction: row;
     }
 }
@@ -377,7 +382,6 @@ a:hover {
     background-color: #D14A9A;
     background-image: -webkit-linear-gradient(105deg, #d253b1, #fb6f4a);
     background-image: linear-gradient(345deg, #d253b1, #fb6f4a);
-    margin: 0px 20px 20px 20px;
     padding-top: 0;
 }
 
@@ -404,7 +408,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 .banner_part .single_banner_main .banner_text h1 {
     font-size: 66px;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     font-weight: 700;
     margin-bottom: 35px;
     line-height: 72px;
@@ -507,6 +511,12 @@ p {
     }
 }
 
+@media (min-width: 992px){
+    .col-large-7 {
+        flex: 0 0 58.333333%;
+        max-width: 58.333333%;
+    }
+}
 .section_tittle h2 {
     font-size: 36px;
     color: #1a1a1a;
@@ -590,7 +600,7 @@ p {
     transition: 0.5s;
 }
 
-.single_product_item:hover {
+.single_product_item:hover, .single_category_post_text:hover {
     box-shadow: 0px 10px 20px 0px rgba(0, 23, 51, 0.09)
 }
 
@@ -615,4 +625,96 @@ p {
     color: #ff3368;
     -webkit-transition: 0.5s;
     transition: 0.5s;
+}
+
+.category_part .single_category_post_text {
+    padding: 50px;
+    background-color: #f8fbff;
+    margin-bottom: 30px;
+    position: relative;
+    height: 400px;
+}
+
+.category_part .cat-mac {
+    background-color: #121217;
+}
+
+.category_part .single_category_post_text p {
+    line-height: 13px;
+}
+
+.category_part .single_category_post_text h3 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 21px;
+}
+
+.category_part .single_category_post_text .category_btn {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ff3368;
+    position: absolute;
+    left: 50px;
+    bottom: 60px;
+    line-height: 15px;
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.category_part .single_category_post_text .category_btn i {
+    font-weight: 12px;
+    color: #ff3368;
+    margin-left: 6px;
+}
+
+.category_part .single_category_post_text img {
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+}
+
+.category_part .cat-mac img, .category_part .cat-iphone img {
+    right:0px;
+}
+
+.category_part .cat-mac h3, .cat-ipad h3, .cat-iphone h3 {
+    color:#fff;
+}
+
+.category_part .cat-mac p, .category_part .cat-iphone p {
+    color:lightgray;
+}
+
+.category_part .single_category_post_text:hover .category_btn {
+    bottom: 50px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.category_part .cat-ipad {
+    background-image: url('../img/category/cat_ipad.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color:#fff;
+}
+
+.category_part .cat-watch {
+    background-image: url('../img/category/cat_watch.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color:#e3e3e3;
+    background-position: bottom;
+}
+
+.category_part .cat-iphone img {
+    width:75%;
+}
+
+.category_part .cat-iphone {
+    background-color:#000000;
 }

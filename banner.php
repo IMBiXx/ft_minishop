@@ -7,9 +7,9 @@
                         <div class="col-large-5 col-medium-8">
                             <div class="banner_text">
                                 <div class="banner_text_iner">
-                                    <h1>Un canapé 100% confort</h1>
-                                    <p>Excellent pour rester poser chez soi, il revolutionnera votre quotidien. Seul ou à plusieurs, c'est incontestablement un must-have pour passer de confortables moments.</p>
-                                    <a href="#" class="btn_2">buy now</a>
+                                    <h1>Il a tout pour lui.</h1>
+                                    <p>Un nouveau double appareil photo conçu pour élargir vos horizons. Une puce plus rapide que toutes les autres puces de smart­phone. Une autonomie d’une journée, pour passer plus de temps à faire ce que vous aimez et moins à recharger. Et la meilleure qualité vidéo sur smartphone, pour embellir tous vos souvenirs.</p>
+                                    <a href="#" class="btn_2">acheter</a>
                                 </div>
                             </div>
                         </div>
