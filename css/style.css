@@ -342,7 +342,7 @@ a:hover {
     color: #000;
     position: relative;
     z-index: 1;
-    font-size: 15px;
+    font-size: 25px;
 }
 
 .fa, .fas, .far, .fal, .fab {
@@ -357,15 +357,19 @@ a:hover {
     position: absolute;
     border-radius: 50%;
     background-color: #f13d80;
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
     right: -8px;
     top: -8px;
     content: "5";
     text-align: center;
-    line-height: 15px;
-    font-size: 10px;
+    line-height: 18px;
+    font-size: 15px;
     color: #fff;
+}
+
+.hearer_icon a i {
+    font-size:25px;
 }
 
 .main_menu .cart .dropdown-toggle::after {
@@ -376,7 +380,7 @@ a:hover {
     border: 0px solid transparent;
 }
 
-.banner_part {
+.banner_part, .product_banner_part {
     position: relative;
     overflow: hidden;
     background-color: #D14A9A;
@@ -394,21 +398,26 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
         max-width: 1170px;
     }
 }
-
-.banner_part .single_banner_main .banner_text {
+.banner_part .single_banner_main .banner_text, .product_banner_part .single_banner_main .banner_text {
     display: table;
     width: 100%;
+}
+.banner_part .single_banner_main .banner_text {
     height: 700px;
 }
 
-.banner_part .single_banner_main .banner_text .banner_text_iner {
+.product_banner_part .single_banner_main .banner_text {
+    height: 500px;
+    padding-top:90px;
+}
+
+.banner_part .single_banner_main .banner_text .banner_text_iner, .product_banner_part .single_banner_main .banner_text .banner_text_iner {
     display: table-cell;
     vertical-align: middle;
 }
 
-.banner_part .single_banner_main .banner_text h1 {
+.banner_part .single_banner_main .banner_text h1, .product_banner_part .single_banner_main .banner_text h1 {
     font-size: 66px;
-    /* text-transform: capitalize; */
     font-weight: 700;
     margin-bottom: 35px;
     line-height: 72px;
@@ -435,7 +444,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
 }
 
-.banner_part .single_banner_main .banner_text p {
+.banner_part .single_banner_main .banner_text p, .product_banner_part .single_banner_main .banner_text p {
     font-size: 15px;
     line-height: 1.8;
     font-family: "Poppins", sans-serif;
@@ -453,7 +462,7 @@ p {
     margin-top: 0;
 }
 
-.banner_part .btn_2 {
+.banner_part .btn_2, .product_banner_part .btn_2 {
     box-shadow: none;
 }
 
@@ -495,6 +504,10 @@ p {
     position: absolute;
     right: 0;
     bottom: 0;
+}
+
+.category_banner_img img {
+    max-height: 400px;
 }
 
 @media (min-width: 768px) {

@@ -7,8 +7,8 @@
                         <div class="col-large-5 col-medium-8">
                             <div class="banner_text">
                                 <div class="banner_text_iner">
-                                    <h1><?php echo $category['category_name'];?></h1>
-                                    <p><?php echo $category['category_description'];?></p>
+                                    <h1>Erreur 404</h1>
+                                    <p>CETTE PAGE N'EXISTE PAS !</p>
                                 </div>
                             </div>
                         </div>

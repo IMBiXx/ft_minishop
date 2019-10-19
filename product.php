@@ -7,10 +7,19 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <?php include("header.php"); ?>
-    <?php include("product-banner.php"); ?>
-    <?php include("product-core.php"); ?>
-    <?php include("footer.php"); ?>
+<?php
+include("functions/product.php");
+include("functions/category.php");
+$product = product_array_by_ID($_GET['id']);
+if (!$product['product_ID'])
+  header("Location: 404.php");
+$category = category_array_by_ID($product['category_ID']);
+
+include("header.php");
+include("product-banner.php");
+include("product-core.php");
+include("footer.php"); 
+?>
     <script src="js/script.js"></script>
 </body>
 </html>

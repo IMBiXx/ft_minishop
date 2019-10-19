@@ -2,23 +2,28 @@
     <div class="container">
       <div class="row s_product_inner justify-content-between">
         <div class="col-large-7">
-          <img src="img/product/macbook_pro.jpg">
+          <img src="<?php echo $product['product_image'];?>">
         </div>
         <div class="col-large-5">
           <div class="s_product_text">
-            <h3>Product_name</h3>
-            <h2>Product_price</h2>
+            <h3><?php echo $product['product_name']; ?></h3>
+            <h2><?php echo $product['product_price']." €"; ?></h2>
             <ul class="list">
               <li>
-                <a class="active" href="#">
-                  <span>Categorie</span> : product_category</a>
+                <a class="active" href="category.php?id=<?php echo $category['category_ID'];?>">
+                  <span>Categorie</span> : <?php 
+                  
+                  echo $category['category_name'];
+                  
+                  
+                  ?></a>
               </li>
               <li>
-                <a href="#"> <span>Disponibilité</span> : product_availaible</a>
+                <a href="#input-number"> <span>Disponible</span> : <?php $product['product_available'] == 1 ? print("Oui") : print("Non") ?></a>
               </li>
             </ul>
             <p>
-              product_description
+            <?php echo $product['product_description'];?>
             </p>
             <div class="card_area d-flex justify-content-between align-items-center">
               <div class="product_count">
