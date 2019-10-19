@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-large-12">
-                <div class="single_banner_slider">
+                <div class="single_banner_main">
                     <div class="row">
                         <div class="col-large-5 col-medium-8">
                             <div class="banner_text">
