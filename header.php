@@ -7,16 +7,16 @@
                     <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Mac</a>
+                                <a class="nav-link" href="category.php?id=1">Mac</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">iPad</a>
+                                <a class="nav-link" href="category.php?id=2">iPad</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">iPhone</a>
+                                <a class="nav-link" href="category.php?id=3">iPhone</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Watch</a>
+                                <a class="nav-link" href="category.php?id=4">Watch</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Contact</a>
