@@ -4,7 +4,7 @@
 // DATABASE USER CREATION / DELETION
 
 function add_user_to_db( $login, $passwd, $database ){
-	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $database);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $database);
 	$query = "CREATE USER ".$login."@localhost IDENTIFIED BY '".$passwd."';";
 	$query .= "GRANT SELECT ON ".$database.".ft_products TO ".$login."@localhost;";
 	$query .= "GRANT SELECT ON ".$database.".ft_orders TO ".$login."@localhost;";
@@ -19,7 +19,7 @@ function add_user_to_db( $login, $passwd, $database ){
 }
 
 function del_user_from_db( $login, $database ){
-	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $database);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $database);
 	$query = "DROP USER ".$login."@localhost;";
 	$query .= "DELETE FROM mysql.user WHERE user = "."'".$login."';";
 	$query .= "FLUSH PRIVILEGES;";
@@ -35,7 +35,7 @@ function del_user_from_db( $login, $database ){
 // USER TABLE
 
 function user_array_by_name( $user_name ){
-	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_users';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -51,10 +51,27 @@ function user_array_by_name( $user_name ){
 	return ($column);
 }
 
+function user_array_by_ID( $user_ID ){
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
+	$query = 'SELECT * FROM ft_users';
+	if (!($result = mysqli_query($mysqli, $query))){
+		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
+		mysqli_close($mysqli);
+		return (NULL);
+	}
+	$column = array();
+	while($row = mysqli_fetch_assoc($result)){
+		if ($row["ID"] == $user_ID)
+			$column = $row;
+	}
+	mysqli_close($mysqli);
+	return ($column);
+}
+
 // USER DATABASE VERIFICATIONS
 
 function verify_current_user(){
-	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_users';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -71,7 +88,7 @@ function verify_current_user(){
 }
 
 function verify_current_user_ID( $user_ID ){
-	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_users';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -91,7 +108,7 @@ function verify_current_user_ID( $user_ID ){
 }
 
 function verify_product_quantity( $product_ID, $product_quantity ){
-	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT product_ID, product_stock FROM ft_products';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -117,7 +134,7 @@ function verify_product_quantity( $product_ID, $product_quantity ){
 }
 
 function update_product_quantity( $product_ID, $product_quantity, $product_name ){
-	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT product_ID, product_stock FROM ft_products';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -181,7 +198,7 @@ function update_current_user_cart( $product_ID, $product_quantity ){
 // ORDER
 
 function user_orders_array( $user_ID ){
-	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_orders';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -197,8 +214,25 @@ function user_orders_array( $user_ID ){
 	return ($column);
 }
 
+function orders_array_by_ID( $order_ID ){
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
+	$query = 'SELECT * FROM ft_orders';
+	if (!($result = mysqli_query($mysqli, $query))){
+		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
+		mysqli_close($mysqli);
+		return (NULL);
+	}
+	$column = array();
+	while($row = mysqli_fetch_assoc($result)){
+		if ($row["order_ID"] == $order_ID)
+			$column[] = $row;
+	}
+	mysqli_close($mysqli);
+	return ($column);
+}
+
 function user_order_details_array( $order_ID ){
-	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_orderdetails';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";

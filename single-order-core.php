@@ -36,7 +36,6 @@
                   <?php
                   foreach ($order_details as $elem) {
                     $product = product_array_by_ID($elem['product_ID']);
-                    // print_r($product_name);
                     echo '<tr><th colspan="2"><a href="product.php?id='.$product['product_ID'].'"><img src="'.$product['product_image'].'"><span>'.$product['product_name'].'</span></a></th>
                       <th>'.$elem['product_quantity'].'</th>
                       <th> <span>'.$elem['product_total'].' €</span></th></tr>';

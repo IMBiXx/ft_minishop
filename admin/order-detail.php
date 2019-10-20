@@ -10,6 +10,14 @@
 
 include("../functions/product.php");
 include("../functions/category.php");
+include("../functions/user_interface.php");
+include("../functions/admin.php");
+$order_details = user_order_details_array($_GET['id']);
+$orders = orders_array_by_ID($_GET['id']);
+foreach ($orders as $elem) {
+  if ($elem['order_ID'] === $_GET['id'])
+    $order = $elem;
+}
 ?>
 <?php
 include("admin-header.php");

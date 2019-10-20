@@ -15,27 +15,22 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th colspan="2"><a href="order-detail.php?id=1"><span>#order_ID</span></a></th>
-                  <th><a href="single-user.php?id=1">#user_ID</a></th>
-                  <th>user_firstname user_name</th>
-                  <th>order_date</th>
-                  <th> <span>product_price €</span></th>
-                </tr>
-                <tr>
-                <th colspan="2"><a href="order-detail.php?id=2"><span>#order_ID</span></a></th>
-                  <th><a href="single-user.php?id=2">#user_ID</a></th>
-                  <th>user_firstname user_name</th>
-                  <th>order_date</th>
-                  <th> <span>product_price €</span></th>
-                </tr>
-                <tr>
-                <th colspan="2"><a href="order-detail.php?id=3"><span>#order_ID</span></a></th>
-                  <th><a href="single-user.php?id=1">#user_ID</a></th>
-                  <th>user_firstname user_name</th>
-                  <th>order_date</th>
-                  <th> <span>product_price €</span></th>
-                </tr>
+              <?php
+                  foreach ($orders as $user)
+                  {
+                    foreach ($user as $order)
+                    {
+                      $user_detail = user_array_by_ID($order['user_ID']);
+                  echo '<tr>
+                  <th colspan="2"><a href="order-detail.php?id='.$order['order_ID'].'"><span>#'.$order['order_ID'].'</span></a></th>
+                  <th><a href="single-user.php?id='.$order['user_ID'].'">'.$order['user_ID'].'</a></th>
+                  <th>'.$user_detail['user_firstname'].' '.$user_detail['user_name'].'</th>
+                  <th>'.$order['order_date'].'</th>
+                  <th> <span>'.$order['order_total'].' €</span></th>
+                </tr>';
+                }
+              }
+                ?>
               </tbody>
             </table>
           </div>

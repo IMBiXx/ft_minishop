@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>ft_apple</title>
+    <link rel="stylesheet" type="text/css" href="../css/register.css">
 	<?php include('css-handler.php');?>
 </head>
 <body>
@@ -11,13 +12,12 @@
 include("../functions/product.php");
 include("../functions/category.php");
 include("../functions/admin.php");
-include("../functions/get_all_items.php");
-$orders = get_all_orders();
+$user = user_array_by_ID($_GET['id']);
 ?>
 <?php
 include("admin-header.php");
 include("admin-banner.php");
-include("orders-list-core.php");
+include("single-user-core.php");
 ?>
 <?php
 include("../footer.php");

@@ -1,3 +1,4 @@
+<?php session_start();?>
 <header class="main_menu home_menu">
     <div class="container">
         <div class="row align-items-center">
@@ -29,7 +30,7 @@
                                 <i class="ti-user" title="Commandes" alt="Commandes"></i>
                             </a>
                             <?php 
-                        if (!$_SESSION['loggued_on_user']){
+                        if (!$_SESSION['user']){
                             echo '<div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <div class="single_product">
                                     <a class="dropdown-item" href="register.php">Inscription</a>
@@ -39,7 +40,7 @@
                         } ?>
                         </div>
                         <?php 
-                        if ($_SESSION['loggued_on_user']){
+                        if ($_SESSION['user']){
                             echo '<a href="logout.php">
                                 <i class="ti-power-off" title="Déconnexion" alt="Déconnexion"></i>
                             </a>';} ?>
@@ -47,12 +48,6 @@
                             <a class="dropdown-toggle" href="cart.php" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="ti-bag" title="Panier" alt="panier"></i>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <div class="single_product">
-                                    <!-- <a class="dropdown-item" href="#">Cart content</a> -->
-                                <?php include("cart-light-core.php");?>
-                                </div>
-                            </div> 
                         </div>
                     </div>
                 </nav>
