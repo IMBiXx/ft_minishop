@@ -19,7 +19,7 @@
                   ?></a>
               </li>
               <li>
-                <a href="#input-number"> <span>Disponible</span> : <?php $product['product_available'] == 1 ? print("Oui") : print("Non") ?></a>
+                <a href="#input-number"> <span>Disponible</span> : <?php $product['product_stock'] >= 1 ? print("Oui") : print("Non") ?></a>
               </li>
             </ul>
             <p>

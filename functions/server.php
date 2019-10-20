@@ -1,7 +1,7 @@
 <?php
 $GLOBALS['host'] = "localhost:3306";
-$GLOBALS['user'] = "valecart";
-$GLOBALS['passwd'] = "pouet";
+$GLOBALS['user'] = "root";
+$GLOBALS['passwd'] = "toto";
 $GLOBALS['database'] = "rush00";
 
 function connect_db( $server, $user, $passwd, $database){
