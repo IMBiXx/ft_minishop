@@ -3,7 +3,7 @@
 </div>
 	
 <form method="post" action="register.php">
-	<?php include('errors.php'); ?>
+	<?php include('error.php'); ?>
 	<div class="input-group">
 		<label>Adresse e-mail</label>
 		<input type="email" name="email" value="<?php echo $email; ?>">

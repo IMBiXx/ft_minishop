@@ -1,4 +1,7 @@
-<?php include('server.php') ?>
+<?php 
+session_start();
+include('functions/server.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +11,14 @@
 	<?php include('css-handler.php');?>
 </head>
 <body>
-<?php 
+<?php
 include('header.php');
 include('homepage-banner.php');
 include('login-core.php');
 include('footer.php');
+include('functions/admin.php');
+$errors = array();
+log_in();
 ?>
 </body>
 </html>

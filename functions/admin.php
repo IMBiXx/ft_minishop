@@ -1,7 +1,7 @@
 <?php
 // include('server.php');
 
-// USER CREATION / DELETION
+// DATABASE USER CREATION / DELETION
 
 function add_user_to_db( $login, $passwd, $database ){
 	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $database);
@@ -32,10 +32,28 @@ function del_user_from_db( $login, $database ){
 	return true;
 }
 
+// USER TABLE
+
+function user_array_by_name( $user_name ){
+	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $GLOBALS['database']);
+	$query = 'SELECT * FROM ft_users';
+	if (!($result = mysqli_query($mysqli, $query))){
+		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
+		mysqli_close($mysqli);
+		return (NULL);
+	}
+	$column = array();
+	while($row = mysqli_fetch_assoc($result)){
+		if ($row["user_email"] == $user_name)
+			$column = $row;
+	}
+	mysqli_close($mysqli);
+	return ($column);
+}
+
 // USER DATABASE VERIFICATIONS
 
 function verify_current_user(){
-	// print_r($_SESSION);
 	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_users';
 	if (!($result = mysqli_query($mysqli, $query))){
@@ -53,7 +71,6 @@ function verify_current_user(){
 }
 
 function verify_current_user_ID( $user_ID ){
-	// print_r($_SESSION);
 	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_users';
 	if (!($result = mysqli_query($mysqli, $query))){
@@ -73,24 +90,6 @@ function verify_current_user_ID( $user_ID ){
 	return false;
 }
 
-function verify_current_user_order( $user_ID ){
-	if (!verify_current_user_ID($user_ID)){
-		echo "Wrong user ID\n";
-		return false;
-	}
-	for ($tmp = 1; $_SESSION['cart'][$tmp] != NULL; $tmp += 1){
-		if (!verify_product_quantity($_SESSION['cart'][$tmp]['product_ID'], $_SESSION['cart'][$tmp]['product_quantity'])){
-			echo $_SESSION['cart'][$tmp]['product_name']." no more available\n";
-			return false;
-		}
-	}
-	for ($tmp = 1; $_SESSION['cart'][$tmp] != NULL; $tmp += 1){
-		update_product_quantity($_SESSION['cart'][$tmp]['product_ID'], $_SESSION['cart'][$tmp]['product_quantity'], $_SESSION['cart'][$tmp]['product_name']);
-	}
-	reset_cart();
-	return true;
-}
-
 function verify_product_quantity( $product_ID, $product_quantity ){
 	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $GLOBALS['database']);
 	$query = 'SELECT product_ID, product_stock FROM ft_products';
@@ -100,14 +99,16 @@ function verify_product_quantity( $product_ID, $product_quantity ){
 		return false;
 	}
 	while($row = mysqli_fetch_assoc($result)){
-		if ($row['ID'] == $product_ID){
-			if ($row['product_quantity'] >= $product_quantity){
+		if ($row['product_ID'] == $product_ID){
+			if ($row['product_stock'] >= $product_quantity){
 				mysqli_close($mysqli);
 				return true;
 			}
-			else
+			else{
+				echo "Not enough stock\n";
 				mysqli_close($mysqli);
 				return false;
+			}
 		}
 	}
 	echo "Product not found\n";
@@ -139,11 +140,42 @@ function update_product_quantity( $product_ID, $product_quantity, $product_name 
 	mysqli_close($mysqli);
 }
 
-function reset_cart(){
-	for($tmp = 1; $_SESSION['cart'][$tmp]; $tmp += 1){
-		unset($_SESSION['cart'][$tmp]);
+function verify_current_user_order( $user_ID ){
+	if (!verify_current_user_ID($user_ID)){
+		echo "Wrong user ID\n";
+		return false;
 	}
+	for ($tmp = 1; $_SESSION['cart'][$tmp] != NULL; $tmp += 1){
+		if (!verify_product_quantity($_SESSION['cart'][$tmp]['product_ID'], $_SESSION['cart'][$tmp]['product_quantity'])){
+			echo $_SESSION['cart'][$tmp]['product_name']." no more available\n";
+			return false;
+		}
+	}
+	for ($tmp = 1; $_SESSION['cart'][$tmp] != NULL; $tmp += 1){
+		update_product_quantity($_SESSION['cart'][$tmp]['product_ID'], $_SESSION['cart'][$tmp]['product_quantity'], $_SESSION['cart'][$tmp]['product_name']);
+	}
+	reset_cart();
+	return true;
+}
+
+// CART
+
+function reset_cart(){
+	unset($_SESSION['cart']);
 	$_SESSION['cart'][0] = 0;
+}
+
+function update_current_user_cart( $product_ID, $product_quantity ){
+	for ($tmp = 1; $_SESSION['cart'][$tmp] != NULL; $tmp += 1){
+		if ($_SESSION['cart'][$tmp]['product_ID'] == $product_ID){
+			if (verify_product_quantity($product_ID, intval($product_quantity + $_SESSION['cart'][$tmp]['product_quantity']))){
+				$_SESSION['cart'][$tmp]['product_quantity'] = intval($product_quantity + $_SESSION['cart'][$tmp]['product_quantity']);
+			}
+			else
+				return false;
+		}
+	}
+	return true;
 }
 
 ?>
