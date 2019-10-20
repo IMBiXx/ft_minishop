@@ -10,6 +10,8 @@
 
 include("../functions/product.php");
 include("../functions/category.php");
+include("../functions/get_all_items.php");
+$categories = get_all_categories();
 ?>
 <?php
 include("admin-header.php");

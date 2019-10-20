@@ -1,7 +1,15 @@
 <?php
+session_start();
 include("functions/product.php");
 include("functions/category.php");
-// $category = category_array_by_ID($_GET['id']);
+include("functions/user_interface.php"); 
+include("functions/admin.php");
+$orders = list_user_orders($_SESSION['user_ID']);
+foreach ($orders as $elem) {
+  if ($elem['order_ID'] === $_GET['id'])
+    $order = $elem;
+}
+$order_details = get_user_order($_SESSION['user_ID'], $_GET['id']);
 ?>
 <!doctype html>
 <html lang="fr">

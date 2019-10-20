@@ -1119,4 +1119,8 @@ a.btn_2.valid {
     border-top: 1px solid rgba(210, 83, 177, 0.7);
 }
 
+.order_part .order_details_iner th img {
+    max-width: 100px;
+}
+
 /* orders part end */

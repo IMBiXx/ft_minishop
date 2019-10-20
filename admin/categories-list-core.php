@@ -7,33 +7,25 @@
             <table class="table table-borderless">
               <thead>
                 <tr>
-                  <th scope="col" colspan="2">#ID Catégorie</th>
-                  <th scope="col">Nom de la catégorie</th>
+                  <th scope="col" colspan="2">#ID</th>
+                  <th scope="col">Nom</th>
                   <th scope="col">Description</th>
                   <th scope="col">Image</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th colspan="2"><a href="single-category.php?id=1"><span>#category_ID</span></a></th>
-                  <th>category_name</th>
-                  <th>category_description</th>
-                  <th>product_image</th>
-                </tr>
-                <tr>
-                  <th colspan="2"><a href="single-category.php?id=1"><span>#category_ID</span></a></th>
-                  <th>category_name</th>
-                  <th>category_description</th>
-                  <th>product_image</th>
-                </tr>
-                </tr>
-                <tr>
-                  <th colspan="2"><a href="single-category.php?id=1"><span>#category_ID</span></a></th>
-                  <th>category_name</th>
-                  <th>category_description</th>
-                  <th>product_image</th>
-                </tr>
-                </tr>
+                <?php
+                foreach ($categories as $category)
+                {
+                  echo '<tr>
+                  <th colspan="2"><a href="single-category.php?id='.$category['category_ID'].'"><span>'.$category['category_ID'].'</span></a></th>
+                  <th>'.$category['category_name'].'</th>
+                  <th>'.$category['category_description'].'</th>
+                  <th><img src="../'.$category['category_image'].'"></th>
+                </tr>';
+                }
+
+                ?>
               </tbody>
             </table>
           </div>

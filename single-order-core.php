@@ -6,18 +6,17 @@
             <h4>Informations sur la commande</h4>
             <ul>
               <li>
-                <p>№ commande</p><span> : #order_ID</span>
+                <p>№ commande</p><span> : <?php echo $_GET['id'];?></span>
               </li>
               <li>
-                <p>Date</p><span> : order_date</span>
+                <p>Date</p><span> : <?php echo $order['order_date'];?></span>
               </li>
               <li>
-                <p>Total</p><span>: order_total</span>
+                <p>Total</p><span>: <?php echo $order['order_total']." €";?></span>
               </li>
             </ul>
           </div>
         </div>
-        
         
       </div>
       <div class="row">
@@ -34,25 +33,20 @@
               </thead>
               <tbody>
                 <tr>
-                  <th colspan="2"><span>product_name</span></th>
-                  <th>product_qty</th>
-                  <th> <span>product_price €</span></th>
-                </tr>
-                <tr>
-                  <th colspan="2"><span>product_name</span></th>
-                  <th>product_qty</th>
-                  <th> <span>product_price €</span></th>
-                </tr>
-                <tr>
-                  <th colspan="2"><span>product_name</span></th>
-                  <th>product_qty</th>
-                  <th> <span>product_price €</span></th>
-                </tr>
+                  <?php
+                  foreach ($order_details as $elem) {
+                    $product = product_array_by_ID($elem['product_ID']);
+                    // print_r($product_name);
+                    echo '<tr><th colspan="2"><a href="product.php?id='.$product['product_ID'].'"><img src="'.$product['product_image'].'"><span>'.$product['product_name'].'</span></a></th>
+                      <th>'.$elem['product_quantity'].'</th>
+                      <th> <span>'.$elem['product_total'].' €</span></th></tr>';
+                }
+                    ?>
               </tbody>
               <tfoot>
                 <tr>
                   <th colspan="3">Total</th>
-                  <th> <span>order_total €</span></th>
+                  <th> <span><?php echo $order['order_total']." €";?></span></th>
                 </tr>
               </tfoot>
             </table>
