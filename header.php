@@ -26,12 +26,13 @@
                     <div class="hearer_icon d-flex">
                         <a href="#"><i class="ti-user" title="Mon compte" alt="mon compte"></i></a>
                         <div class="dropdown cart">
-                            <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="dropdown-toggle" href="cart.php" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="ti-bag" title="Panier" alt="panier"></i>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <div class="single_product">
-                                    <a class="dropdown-item" href="#">Cart content</a>
+                                    <!-- <a class="dropdown-item" href="#">Cart content</a> -->
+                                <?php include("cart-light-core.php");?>
                                 </div>
                             </div> 
                         </div>

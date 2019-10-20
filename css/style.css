@@ -634,6 +634,14 @@ p {
     visibility: visible;
 }
 
+.single_product_item img {
+    max-height: 180px;
+}
+
+.single_product_item .item-details {
+    text-align:center;
+}
+
 .footer_part {
     padding: 130px 0px 25px;
 }

@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <?php 
+
+include("functions/product.php");
+include("functions/category.php");
+?>
     <?php include("header.php"); ?>
     <?php include("homepage-banner.php"); ?>
     <?php include("homepage-category.php"); ?>
