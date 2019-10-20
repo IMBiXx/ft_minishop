@@ -23,12 +23,23 @@ function validate_cart( $user_ID ){
 	return true;
 }
 
-// function get_user_order( $user_ID, $order_ID ){
-	
-// }
+function list_user_orders( $user_ID ){
+	if (($array = user_orders_array($user_ID)) == NULL)
+		return (NULL);
+	else
+		return $array;
+}
 
-// function list_user_orders( $user_ID ){
-
-// }
+function get_user_order( $user_ID, $order_ID ){
+	if (($orders = user_orders_array($user_ID)) == NULL)
+		return (NULL);
+	$details = array();
+	foreach ($orders as $order){
+		// print_r($order);
+		if ($order['order_ID'] == $order_ID)
+			$details = user_order_details_array($order_ID);
+	}
+	return ($details);
+}
 
 ?>

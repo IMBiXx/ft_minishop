@@ -178,4 +178,40 @@ function update_current_user_cart( $product_ID, $product_quantity ){
 	return true;
 }
 
+// ORDER
+
+function user_orders_array( $user_ID ){
+	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $GLOBALS['database']);
+	$query = 'SELECT * FROM ft_orders';
+	if (!($result = mysqli_query($mysqli, $query))){
+		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
+		mysqli_close($mysqli);
+		return (NULL);
+	}
+	$column = array();
+	while($row = mysqli_fetch_assoc($result)){
+		if ($row["user_ID"] == $user_ID)
+			$column[] = $row;
+	}
+	mysqli_close($mysqli);
+	return ($column);
+}
+
+function user_order_details_array( $order_ID ){
+	$mysqli = connect_db($GLOBALS['host'], 'root', 'toto', $GLOBALS['database']);
+	$query = 'SELECT * FROM ft_orderdetails';
+	if (!($result = mysqli_query($mysqli, $query))){
+		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
+		mysqli_close($mysqli);
+		return (NULL);
+	}
+	$column = array();
+	while($row = mysqli_fetch_assoc($result)){
+		if ($row["order_ID"] == $order_ID)
+			array_push($column, $row);
+	}
+	mysqli_close($mysqli);
+	return ($column);
+}
+
 ?>

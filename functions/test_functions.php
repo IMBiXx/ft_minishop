@@ -24,5 +24,7 @@ $_SESSION['user'] = 'youpi';
 // print_r($_SESSION['cart']);
 // del_user_to_db('client', 'rush00');
 // print_r(user_array_by_name())
+// print_r(list_user_orders(1));
+// print_r(get_user_order(1, 1));
 
 ?>

@@ -36,6 +36,7 @@ function product_array_by_name( $product_name ){
 }
 
 function product_array_by_category_ID( $category_ID ){
+	// multiple category
 	$mysqli = connect_db($GLOBALS['host'], $GLOBALS['user'], $GLOBALS['passwd'], $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_products';
 	if (!($result = mysqli_query($mysqli, $query))){
