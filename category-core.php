@@ -25,7 +25,7 @@
                         $flex = 100 / $i;
                         echo '<div class="col-large-3" style="flex: 0 0 '.$flex.'%;max-width:'.$flex.'%;">
                         <div class="single_product_item">
-                            <img src="'.$s_product['product_image'].'" alt="">
+                        <a href="product.php?id='.$s_product['product_ID'].'"><img src="'.$s_product['product_image'].'" alt=""></a>
                             <div class="single_product_text">
                                 <a href="product.php?id='.$s_product['product_ID'].'"><h4>'.$s_product['product_name'].'</h4></a>
                                 <h3>'.$s_product['product_price'].' €</h3>
