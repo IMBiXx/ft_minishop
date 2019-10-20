@@ -22,6 +22,7 @@ function log_in(){
 	if (($user_data = user_array_by_name($username)) != NULL){
 		if ($user_data['user_pass'] == $password){
 			$_SESSION['user'] = $username;
+			$_SESSION['user_ID'] = $user_data['ID'];
 			echo("<script>location.href = '../index.php';</script>");
 		}
 		else
