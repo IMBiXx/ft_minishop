@@ -93,6 +93,25 @@ function add_user_to_table( $username, $password, $first_name, $name ){
 	return true;
 }
 
+function del_user_from_table( $ID ){
+	if (($tmp = user_array_by_ID($ID)) != NULL)
+		return false;
+	$mysqli = connect_db($GLOBALS['host'], $root['login'], $root['passwd'], $GLOBALS['database']);
+	$query = 'INSERT INTO ft_users (user_email,user_pass,user_registered,user_firstname,user_name,user_level) VALUES ("'.$username.'","'.$password.'","'.$date.'","'.$first_name.'","'.$name.'","'.$level.'");';
+	if (!($result = mysqli_query($mysqli, $query))){
+		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
+		mysqli_close($mysqli);
+		return false;
+	}
+	$query2 = 'SET @num := 0;UPDATE ft_users SET id = @num := (@num+1);ALTER TABLE ft_users AUTO_INCREMENT =1;';
+	if (!($result2 = mysqli_query($mysqli, $query2))){
+		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
+		mysqli_close($mysqli);
+		return false;
+	}
+	return true;
+}
+
 // DATABASE VERIFICATIONS / UPDATES (USER / QUANTITY / ORDER)
 
 function verify_current_user(){
@@ -187,6 +206,10 @@ function verify_current_user_order( $user_ID ){
 		echo "Wrong user ID\n";
 		return false;
 	}
+	if ($_SESSION['user'] == NULL){
+		echo "You must be connected to validate your order\n";
+		return false;
+	}
 	for ($tmp = 1; $_SESSION['cart'][$tmp] != NULL; $tmp += 1){
 		if (!verify_product_quantity($_SESSION['cart'][$tmp]['product_ID'], $_SESSION['cart'][$tmp]['product_quantity'])){
 			echo $_SESSION['cart'][$tmp]['product_name']." no more available\n";
@@ -205,19 +228,36 @@ function verify_current_user_order( $user_ID ){
 function reset_cart(){
 	unset($_SESSION['cart']);
 	$_SESSION['cart'][0] = 0;
+	unset($GLOBALS['cart']);
+	$GLOBALS['cart'][0] = 0;
 }
 
 function update_current_user_cart( $product_ID, $product_quantity ){
-	for ($tmp = 1; $_SESSION['cart'][$tmp] != NULL; $tmp += 1){
-		if ($_SESSION['cart'][$tmp]['product_ID'] == $product_ID){
-			if (verify_product_quantity($product_ID, intval($product_quantity + $_SESSION['cart'][$tmp]['product_quantity']))){
-				$_SESSION['cart'][$tmp]['product_quantity'] = intval($product_quantity + $_SESSION['cart'][$tmp]['product_quantity']);
-			}
-			else
+	if ($_SESSION['user'] == NULL)
+	{
+		for ($tmp = 1; $GLOBALS['cart'][$tmp] != NULL; $tmp += 1){
+			if ($GLOBALS['cart'][$tmp]['product_ID'] == $product_ID){
+				if (verify_product_quantity($product_ID, intval($product_quantity + $GLOBALS['cart'][$tmp]['product_quantity']))){
+					$GLOBALS['cart'][$tmp]['product_quantity'] = intval($product_quantity + $GLOBALS['cart'][$tmp]['product_quantity']);
+				}
+				else
 				return false;
+			}
 		}
+		return true;
 	}
-	return true;
+	else{
+		for ($tmp = 1; $_SESSION['cart'][$tmp] != NULL; $tmp += 1){
+			if ($_SESSION['cart'][$tmp]['product_ID'] == $product_ID){
+				if (verify_product_quantity($product_ID, intval($product_quantity + $_SESSION['cart'][$tmp]['product_quantity']))){
+					$_SESSION['cart'][$tmp]['product_quantity'] = intval($product_quantity + $_SESSION['cart'][$tmp]['product_quantity']);
+				}
+				else
+				return false;
+			}
+		}
+		return true;
+	}
 }
 
 // ORDER

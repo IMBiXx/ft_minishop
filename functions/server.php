@@ -45,6 +45,9 @@ function log_in(){
 		if ($user_data['user_pass'] == $password){
 			$_SESSION['user'] = $username;
 			$_SESSION['user_ID'] = $user_data['ID'];
+			if ($GLOBALS['cart'] != NULL){
+				$_SESSION['cart'] = $GLOBALS['cart'];
+			}
 			echo("<script>location.href = '../index.php';</script>");
 		}
 		else

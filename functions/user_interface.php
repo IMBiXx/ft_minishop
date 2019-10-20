@@ -11,8 +11,15 @@ function add_product_to_cart( $product_ID, $product_quantity ){
 	}
 	unset($product['category_ID'], $product['product_description'], $product['product_stock'], $product['product_image'], $product['product_color']);
 	$product['product_quantity'] = $product_quantity;
-	$_SESSION['cart'][] = $product;
-	$_SESSION['cart'][0] = intval($_SESSION['cart'][0] + $product['product_price'] * $product['product_quantity']);
+	// print_r($_SESSION['cart']);
+	if ($_SESSION['user'] != NULL){
+		$GLOBALS['cart'][] = $product;
+		$GLOBALS['cart'][0] = intval($_SESSION['cart'][0] + $product['product_price'] * $product['product_quantity']);
+	}
+	else{
+		$_SESSION['cart'][] = $product;
+		$_SESSION['cart'][0] = intval($_SESSION['cart'][0] + $product['product_price'] * $product['product_quantity']);
+	}
 	echo "Added to cart\n";
 	return true;
 }
