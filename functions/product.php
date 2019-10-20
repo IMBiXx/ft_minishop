@@ -6,6 +6,7 @@ function product_array_by_ID( $product_ID ){
 	$query = 'SELECT * FROM ft_products';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
+		mysqli_close($mysqli);
 		return (NULL);
 	}
 	$column = array();
@@ -22,6 +23,7 @@ function product_array_by_name( $product_name ){
 	$query = 'SELECT * FROM ft_products';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
+		mysqli_close($mysqli);
 		return (NULL);
 	}
 	$column = array();
@@ -38,6 +40,7 @@ function product_array_by_category_ID( $category_ID ){
 	$query = 'SELECT * FROM ft_products';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
+		mysqli_close($mysqli);
 		return (NULL);
 	}
 	$column = array();
@@ -54,11 +57,13 @@ function product_array_by_price( $lower, $upper ){
 	if ($lower > $upper)
 	{
 		echo "Warning: $lower is 'lower' price and $upper is 'upper' price\n";
+		mysqli_close($mysqli);
 		return (NULL);
 	}
 	$query = 'SELECT * FROM ft_products ORDER BY product_price DESC';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
+		mysqli_close($mysqli);
 		return (NULL);
 	}
 	$column = array();
