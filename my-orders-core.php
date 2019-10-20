@@ -13,21 +13,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th colspan="2"><span>#order_ID</span></th>
-                  <th>order_date</th>
-                  <th> <span>product_price €</span></th>
-                </tr>
-                <tr>
-                  <th colspan="2"><span>#order_ID</span></th>
-                  <th>order_date</th>
-                  <th> <span>product_price €</span></th>
-                </tr>
-                <tr>
-                  <th colspan="2"><span>#order_ID</span></th>
-                  <th>order_date</th>
-                  <th> <span>product_price €</span></th>
-                </tr>
+                <?php 
+                foreach ($orders as $order) {
+                        echo '<tr><th colspan="2"><a href="my-order.php?id='.$order['order_ID'].'"><span>'.$order['order_ID'].'</span></a></th>
+                        <th>'.$order['order_date'].'</th>
+                        <th> <span>'.$order['order_total'].' €</span></th></tr>';
+                }
+                ?>
               </tbody>
             </table>
           </div>

@@ -1,7 +1,11 @@
 <?php
+session_start();
 include("functions/product.php");
 include("functions/category.php");
-// $category = category_array_by_ID($_GET['id']);
+include("functions/user_interface.php"); 
+include("functions/admin.php");
+$orders = array();
+$orders = list_user_orders($_SESSION['user_ID']);
 ?>
 <!doctype html>
 <html lang="fr">
