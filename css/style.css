@@ -1044,3 +1044,71 @@ h1.cart-title {
 a.btn_2.valid {
     font-size:20px;
 }
+
+/* orders part start */
+
+.order_part .single_order_details {
+    background-image: -webkit-linear-gradient(105deg, rgba(210, 83, 177, 0.7), rgba(251, 111, 74, 0.7));
+    background-image: linear-gradient(345deg, rgba(210, 83, 177, 0.7), rgba(251, 111, 74, 0.7));
+    padding: 35px 40px;
+}
+
+.order_part .single_order_details h4 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #222222;
+    margin-bottom: 16px;
+}
+
+.order_part .single_order_details ul li {
+    position: relative;
+    text-transform: capitalize;
+    padding-left: 55%;
+    margin-bottom: 3px;
+}
+
+.order_part .single_order_details ul li p {
+    position: absolute;
+    left: 0;
+    top: 0;
+    line-height: 21px;
+    color: #777777;
+}
+
+.order_part .single_order_details ul li span {
+    color: #222222;
+}
+
+.order_part .order_details_iner {
+    margin-top: 50px;
+    background-image: -webkit-linear-gradient(105deg, rgba(210, 83, 177, 0.7), rgba(251, 111, 74, 0.7));
+    background-image: linear-gradient(345deg, rgba(210, 83, 177, 0.7), rgba(251, 111, 74, 0.7));
+    padding: 30px 30px 15px;
+}
+
+.order_part .order_details_iner h3 {
+    font-size: 18px;
+}
+
+/* .order_part .order_details_iner thead {
+    border-top: 1px solid rgba(210, 83, 177, 0.7);
+    border-bottom: 1px solid rgba(210, 83, 177, 0.7);
+} */
+
+.order_part .order_details_iner .table thead th {
+    color: #222222;
+    font-size: 16px;
+    border-color:#fff;
+    border-top:0px;
+}
+
+.order_part .order_details_iner th {
+    font-weight: 500;
+    border-color: #fff;
+}
+
+.order_part .order_details_iner tfoot {
+    border-top: 1px solid rgba(210, 83, 177, 0.7);
+}
+
+/* orders part end */
