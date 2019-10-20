@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>ft_apple</title>
-  <link rel="stylesheet" href="css/themify-icons.css">
-  <link rel="stylesheet" href="css/style.css">
+	<?php include('css-handler.php');?>
 </head>
 <body>
 <?php
