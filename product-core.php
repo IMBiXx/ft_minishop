@@ -27,9 +27,9 @@
             </p>
             <div class="card_area d-flex justify-content-between align-items-center">
               <div class="product_count">
-                <i class="ti-minus" onclick="decrementValue()"></i>
-                <input id="input-number" class="input-number" type="text" value="1" min="0" max="10">
-                <i class="ti-plus" onclick="incrementValue()"></i>
+                <i class="ti-minus" onclick="decrementValue(0)"></i>
+                <input id="input-number" class="input-number" type="text" value="1" min="1" max="10">
+                <i class="ti-plus" onclick="incrementValue(0)"></i>
               </div>
               <a href="#" class="btn_3">ajouter au panier</a>
             </div>

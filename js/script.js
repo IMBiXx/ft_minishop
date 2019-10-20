@@ -1,16 +1,18 @@
-function incrementValue()
+function incrementValue(nb)
 {
-    var value = parseInt(document.getElementById('input-number').value, 10);
+    qty = document.getElementsByClassName('input-number')[nb];
+    var value = parseInt(qty.value);
     value = isNaN(value) ? 0 : value;
     value++;
-    document.getElementById('input-number').value = value;
+    document.getElementsByClassName('input-number')[nb].value = value;
 }
 
-function decrementValue()
+function decrementValue(nb)
 {
-    var value = parseInt(document.getElementById('input-number').value, 10);
+    qty = document.getElementsByClassName('input-number')[nb];
+    var value = parseInt(qty.value);
     value = isNaN(value) ? 0 : value;
     if (value > 1)
         value--;
-    document.getElementById('input-number').value = value;
+    document.getElementsByClassName('input-number')[nb].value = value;
 }

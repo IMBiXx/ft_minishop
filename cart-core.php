@@ -28,9 +28,9 @@
                 </td>
                 <td>
                   <div class="product_count">
-                    <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
+                    <span class="input-number-decrement"> <i class="ti-angle-down" onclick="decrementValue(0)"></i></span>
                     <input class="input-number" type="text" value="1" min="0" max="10">
-                    <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
+                    <span class="input-number-increment"> <i class="ti-angle-up"  onclick="incrementValue(0)"></i></span>
                   </div>
                 </td>
                 <td>
@@ -49,7 +49,7 @@
                   </div>
                 </td>
                 <td>
-                  <h5>product_price €</h5>
+                  <h5>product_price d€</h5>
                 </td>
                 <td>
                   <div class="product_count">
