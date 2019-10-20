@@ -1,7 +1,7 @@
 <?php
 $GLOBALS['host'] = "localhost:3306";
-$GLOBALS['user'] = "root";
-$GLOBALS['passwd'] = "toto";
+$GLOBALS['user'] = "valecart";
+$GLOBALS['passwd'] = "pouet";
 $GLOBALS['database'] = "rush00";
 function connect_db( $server, $user, $passwd, $database){
 	$conn = mysqli_connect($server, $user, $passwd, $database);
@@ -48,7 +48,7 @@ function log_in(){
 			if ($GLOBALS['cart'] != NULL){
 				$_SESSION['cart'] = $GLOBALS['cart'];
 			}
-			echo("<script>location.href = '../index.php';</script>");
+			echo("<script>location.href = 'index.php';</script>");
 		}
 		else
 			array_push($errors, "Wrong Password\n");
@@ -58,14 +58,13 @@ function log_in(){
 }
 
 function log_out(){
+	session_start();
 	global $errors;
 	if (isset($_SESSION['user']) && isset($_SESSION['user_ID'])){
-		session_destroy();
 		unset($_SESSION['user']);
 		unset($_SESSION['user_ID']);
 		session_destroy();
-		echo("<script>location.href = '../login.php';</script>");
+		echo("<script>location.href = 'index.php';</script>");
 	}
 }
-
 ?>

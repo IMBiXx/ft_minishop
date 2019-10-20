@@ -19,9 +19,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="category.php?id=4">Watch</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
-                            </li>
                         </ul>
                     </div>
                     <div class="hearer_icon d-flex">

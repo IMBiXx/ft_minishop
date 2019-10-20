@@ -6,13 +6,13 @@ function add_product_to_cart( $product_ID, $product_quantity ){
 	if (!(update_current_user_cart($product_ID, $product_quantity)))
 		return false;
 	if ($product['product_stock'] < $product_quantity){
-		echo "No more ".$product['product_name']." available\n";
+		// echo "No more ".$product['product_name']." available\n";
 		return false;
 	}
 	unset($product['category_ID'], $product['product_description'], $product['product_stock'], $product['product_image'], $product['product_color']);
 	$product['product_quantity'] = $product_quantity;
 	// print_r($_SESSION['cart']);
-	if ($_SESSION['user'] != NULL){
+	if ($_SESSION['user'] == NULL){
 		$GLOBALS['cart'][] = $product;
 		$GLOBALS['cart'][0] = intval($_SESSION['cart'][0] + $product['product_price'] * $product['product_quantity']);
 	}
@@ -20,7 +20,7 @@ function add_product_to_cart( $product_ID, $product_quantity ){
 		$_SESSION['cart'][] = $product;
 		$_SESSION['cart'][0] = intval($_SESSION['cart'][0] + $product['product_price'] * $product['product_quantity']);
 	}
-	echo "Added to cart\n";
+	// echo "Added to cart\n";
 	return true;
 }
 

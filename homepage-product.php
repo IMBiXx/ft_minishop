@@ -33,7 +33,7 @@ else
                             <div class="single_product_text">
                                 <a href="product.php?id='.$s_product['product_ID'].'"><h4>'.$s_product['product_name'].'</h4></a>
                                 <h3>'.$s_product['product_price'].' €</h3>
-                                <a href="#" class="add_cart">+ ajouter au panier</a>
+                                <a href="product.php?id='.$s_product['product_ID'].'" class="add_cart">+ Voir le produit</a>
                             </div>
                         </div>
                         </div>';

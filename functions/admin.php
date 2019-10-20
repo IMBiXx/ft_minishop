@@ -1,13 +1,10 @@
 <?php
 // include('server.php');
 
-$root['login'] = 'root';
-$root['passwd'] = 'toto';
-
 // DATABASE USER CREATION / DELETION
 
 function add_user_to_db( $login, $passwd, $database ){
-	$mysqli = connect_db($GLOBALS['host'], $root['login'], $root['passwd'], $database);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $database);
 	$query = "CREATE USER ".$login."@localhost IDENTIFIED BY '".$passwd."';";
 	$query .= "GRANT SELECT ON ".$database.".ft_products TO ".$login."@localhost;";
 	$query .= "GRANT SELECT ON ".$database.".ft_orders TO ".$login."@localhost;";
@@ -22,7 +19,7 @@ function add_user_to_db( $login, $passwd, $database ){
 }
 
 function del_user_from_db( $login, $database ){
-	$mysqli = connect_db($GLOBALS['host'], $root['login'], $root['passwd'], $database);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $database);
 	$query = "DROP USER ".$login."@localhost;";
 	$query .= "DELETE FROM mysql.user WHERE user = "."'".$login."';";
 	$query .= "FLUSH PRIVILEGES;";
@@ -38,7 +35,7 @@ function del_user_from_db( $login, $database ){
 // USER TABLE
 
 function user_array_by_name( $user_name ){
-	$mysqli = connect_db($GLOBALS['host'], $root['login'], $root['passwd'], $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_users';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -55,7 +52,7 @@ function user_array_by_name( $user_name ){
 }
 
 function user_array_by_ID( $user_ID ){
-	$mysqli = connect_db($GLOBALS['host'], $root['login'], $root['passwd'], $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_users';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -97,14 +94,8 @@ function del_user_from_table( $ID ){
 	if (($tmp = user_array_by_ID($ID)) != NULL)
 		return false;
 	$mysqli = connect_db($GLOBALS['host'], $root['login'], $root['passwd'], $GLOBALS['database']);
-	$query = 'INSERT INTO ft_users (user_email,user_pass,user_registered,user_firstname,user_name,user_level) VALUES ("'.$username.'","'.$password.'","'.$date.'","'.$first_name.'","'.$name.'","'.$level.'");';
+	$query = 'DELETE FROM ft_users WHERE ID='.$ID.';';
 	if (!($result = mysqli_query($mysqli, $query))){
-		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
-		mysqli_close($mysqli);
-		return false;
-	}
-	$query2 = 'SET @num := 0;UPDATE ft_users SET id = @num := (@num+1);ALTER TABLE ft_users AUTO_INCREMENT =1;';
-	if (!($result2 = mysqli_query($mysqli, $query2))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
 		mysqli_close($mysqli);
 		return false;
@@ -115,7 +106,7 @@ function del_user_from_table( $ID ){
 // DATABASE VERIFICATIONS / UPDATES (USER / QUANTITY / ORDER)
 
 function verify_current_user(){
-	$mysqli = connect_db($GLOBALS['host'], $root['login'], $root['passwd'], $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_users';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -132,7 +123,7 @@ function verify_current_user(){
 }
 
 function verify_current_user_ID( $user_ID ){
-	$mysqli = connect_db($GLOBALS['host'], $root['login'], $root['passwd'], $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_users';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -152,7 +143,7 @@ function verify_current_user_ID( $user_ID ){
 }
 
 function verify_product_quantity( $product_ID, $product_quantity ){
-	$mysqli = connect_db($GLOBALS['host'], $root['login'], $root['passwd'], $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT product_ID, product_stock FROM ft_products';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -178,7 +169,7 @@ function verify_product_quantity( $product_ID, $product_quantity ){
 }
 
 function update_product_quantity( $product_ID, $product_quantity, $product_name ){
-	$mysqli = connect_db($GLOBALS['host'], $root['login'], $root['passwd'], $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT product_ID, product_stock FROM ft_products';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -197,7 +188,7 @@ function update_product_quantity( $product_ID, $product_quantity, $product_name 
 			mysqli_close($mysqli);
 		}
 	}
-	echo "Product not found\n";
+	// echo "Product not found\n";
 	mysqli_close($mysqli);
 }
 
@@ -206,18 +197,14 @@ function verify_current_user_order( $user_ID ){
 		echo "Wrong user ID\n";
 		return false;
 	}
-	if ($_SESSION['user'] == NULL){
-		echo "You must be connected to validate your order\n";
-		return false;
-	}
 	for ($tmp = 1; $_SESSION['cart'][$tmp] != NULL; $tmp += 1){
 		if (!verify_product_quantity($_SESSION['cart'][$tmp]['product_ID'], $_SESSION['cart'][$tmp]['product_quantity'])){
-			echo $_SESSION['cart'][$tmp]['product_name']." no more available\n";
+			// echo $_SESSION['cart'][$tmp]['product_name']." no more available\n";
 			return false;
 		}
 	}
-	for ($tmp = 1; $_SESSION['cart'][$tmp] != NULL; $tmp += 1){
-		update_product_quantity($_SESSION['cart'][$tmp]['product_ID'], $_SESSION['cart'][$tmp]['product_quantity'], $_SESSION['cart'][$tmp]['product_name']);
+	for ($tmp = 1; $GLOBALS['cart'][$tmp] != NULL; $tmp += 1){
+		update_product_quantity($GLOBALS['cart'][$tmp]['product_ID'], $GLOBALS['cart'][$tmp]['product_quantity'], $GLOBALS['cart'][$tmp]['product_name']);
 	}
 	reset_cart();
 	return true;
@@ -228,42 +215,25 @@ function verify_current_user_order( $user_ID ){
 function reset_cart(){
 	unset($_SESSION['cart']);
 	$_SESSION['cart'][0] = 0;
-	unset($GLOBALS['cart']);
-	$GLOBALS['cart'][0] = 0;
 }
 
 function update_current_user_cart( $product_ID, $product_quantity ){
-	if ($_SESSION['user'] == NULL)
-	{
-		for ($tmp = 1; $GLOBALS['cart'][$tmp] != NULL; $tmp += 1){
-			if ($GLOBALS['cart'][$tmp]['product_ID'] == $product_ID){
-				if (verify_product_quantity($product_ID, intval($product_quantity + $GLOBALS['cart'][$tmp]['product_quantity']))){
-					$GLOBALS['cart'][$tmp]['product_quantity'] = intval($product_quantity + $GLOBALS['cart'][$tmp]['product_quantity']);
-				}
-				else
-				return false;
+	for ($tmp = 1; $_SESSION['cart'][$tmp] != NULL; $tmp += 1){
+		if ($_SESSION['cart'][$tmp]['product_ID'] == $product_ID){
+			if (verify_product_quantity($product_ID, intval($product_quantity + $_SESSION['cart'][$tmp]['product_quantity']))){
+				$_SESSION['cart'][$tmp]['product_quantity'] = intval($product_quantity + $_SESSION['cart'][$tmp]['product_quantity']);
 			}
-		}
-		return true;
-	}
-	else{
-		for ($tmp = 1; $_SESSION['cart'][$tmp] != NULL; $tmp += 1){
-			if ($_SESSION['cart'][$tmp]['product_ID'] == $product_ID){
-				if (verify_product_quantity($product_ID, intval($product_quantity + $_SESSION['cart'][$tmp]['product_quantity']))){
-					$_SESSION['cart'][$tmp]['product_quantity'] = intval($product_quantity + $_SESSION['cart'][$tmp]['product_quantity']);
-				}
-				else
+			else
 				return false;
-			}
 		}
-		return true;
 	}
+	return true;
 }
 
 // ORDER
 
 function user_orders_array( $user_ID ){
-	$mysqli = connect_db($GLOBALS['host'], $root['login'], $root['passwd'], $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_orders';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -280,7 +250,7 @@ function user_orders_array( $user_ID ){
 }
 
 function orders_array_by_ID( $order_ID ){
-	$mysqli = connect_db($GLOBALS['host'], $root['login'], $root['passwd'], $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_orders';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";
@@ -297,7 +267,7 @@ function orders_array_by_ID( $order_ID ){
 }
 
 function user_order_details_array( $order_ID ){
-	$mysqli = connect_db($GLOBALS['host'], $root['login'], $root['passwd'], $GLOBALS['database']);
+	$mysqli = connect_db($GLOBALS['host'], 'valecart', 'pouet', $GLOBALS['database']);
 	$query = 'SELECT * FROM ft_orderdetails';
 	if (!($result = mysqli_query($mysqli, $query))){
 		echo 'Query error: ' . mysqli_error($mysqli) . "\n";

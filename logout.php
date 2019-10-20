@@ -1,4 +1,4 @@
 <?php
 include('functions/server.php');
-logout();
+log_out();
 ?>

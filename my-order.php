@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include("functions/product.php");
 include("functions/category.php");
 include("functions/user_interface.php"); 
@@ -20,7 +20,7 @@ $order_details = get_user_order($_SESSION['user_ID'], $_GET['id']);
 </head>
 <body>
 <?php
-include("header.php");
+// include("header.php");
 include("my-orders-banner.php");
 include("single-order-core.php");
 include("footer.php"); 

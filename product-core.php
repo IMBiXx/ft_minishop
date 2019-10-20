@@ -27,12 +27,16 @@
             </p>
             <div class="card_area d-flex justify-content-between align-items-center">
               <div class="product_count">
+                <form method="post" action="cart.php">
                 <i class="ti-minus" onclick="decrementValue(0)"></i>
-                <input id="input-number" class="input-number" type="text" value="1" min="1" max="10">
+                <input id="input-number" class="input-number" name="input-number" type="text" value="1" min="1" max="10">
                 <i class="ti-plus" onclick="incrementValue(0)"></i>
+                <input class="d-none" name="id" value="<?php echo $product['product_ID'];?>">
               </div>
-              <a href="#" class="btn_3">ajouter au panier</a>
+              <input type="submit" name="add_cart" value="ajouter au panier" class="btn_3">
+              </form>
             </div>
+            
           </div>
         </div>
       </div>

@@ -1124,3 +1124,7 @@ a.btn_2.valid {
 }
 
 /* orders part end */
+
+.d-none {
+    display:none!important;
+}

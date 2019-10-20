@@ -1,8 +1,14 @@
 <?php
+// session_start();
 include("functions/product.php");
 include("functions/category.php");
-// $product = product_array_by_ID($_GET['id']);
-// $category = category_array_by_ID($product['category_ID']);
+include("functions/admin.php");
+include("functions/user_interface.php");
+// print_r($_POST);
+// print_r($GLOBALS['cart']);
+if (isset($_POST))
+  add_product_to_cart($_POST['id'], $_POST['input-number']);
+  print_r($_SESSION['cart']);
 ?>
 <!doctype html>
 <html lang="fr">
@@ -16,7 +22,7 @@ include("functions/category.php");
 include("header.php");
 include("cart-banner.php");
 include("cart-core.php");
-include("footer.php"); 
+include("footer.php");
 ?>
     <script src="js/script.js"></script>
 </body>
