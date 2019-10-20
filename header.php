@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <header class="main_menu home_menu">
     <div class="container">
         <div class="row align-items-center">
@@ -30,17 +26,23 @@ session_start();
                     <div class="hearer_icon d-flex">
                     <div class="dropdown">
                             <a href="my-orders.php" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-user" title="Panier" alt="panier"></i>
+                                <i class="ti-user" title="Commandes" alt="Commandes"></i>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <?php 
+                        if (!$_SESSION['loggued_on_user']){
+                            echo '<div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <div class="single_product">
                                     <a class="dropdown-item" href="register.php">Inscription</a>
                                     <a class="dropdown-item" href="login.php">Connexion</a>
                                 </div>
-                            </div> 
+                            </div>';
+                        } ?>
                         </div>
-
-
+                        <?php 
+                        if ($_SESSION['loggued_on_user']){
+                            echo '<a href="logout.php">
+                                <i class="ti-power-off" title="Déconnexion" alt="Déconnexion"></i>
+                            </a>';} ?>
                         <div class="dropdown cart">
                             <a class="dropdown-toggle" href="cart.php" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="ti-bag" title="Panier" alt="panier"></i>

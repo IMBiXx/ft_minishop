@@ -7,7 +7,7 @@ session_start();
         <div class="row align-items-center">
             <div class="col-large-12">
                 <nav class="navbar navbar-expand-large navbar-light">
-                    <a class="navbar-brand" href="index.php"> <img class="logo" src="../img/logo.svg" alt="logo"> </a>
+                    <a class="navbar-brand" href="../index.php"> <img class="logo" src="../img/logo.svg" alt="logo"> </a>
                     <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
