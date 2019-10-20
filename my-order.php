@@ -16,7 +16,7 @@ include("functions/category.php");
 <?php
 include("header.php");
 include("my-orders-banner.php");
-include("single-orders-core.php");
+include("single-order-core.php");
 include("footer.php"); 
 ?>
     <script src="js/script.js"></script>
