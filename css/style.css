@@ -506,6 +506,10 @@ p {
     bottom: 20px;
 }
 
+.banner_img.main_banner {
+    bottom:0;
+}
+
 .category_banner_img img {
     max-height: 400px;
 }

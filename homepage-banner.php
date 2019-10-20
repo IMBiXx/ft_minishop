@@ -13,7 +13,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="banner_img">
+                        <div class="banner_img main_banner">
                             <img src="img/banner_img.png" alt="">
                         </div>
                     </div>
