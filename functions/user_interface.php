@@ -35,7 +35,6 @@ function get_user_order( $user_ID, $order_ID ){
 		return (NULL);
 	$details = array();
 	foreach ($orders as $order){
-		// print_r($order);
 		if ($order['order_ID'] == $order_ID)
 			$details = user_order_details_array($order_ID);
 	}

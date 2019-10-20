@@ -13,6 +13,9 @@ include('header.php');
 include('homepage-banner.php');
 include('register-core.php');
 include('footer.php');
+include('functions/admin.php');
+$errors = array();
+register();
 ?>
 </body>
 </html>
