@@ -15,7 +15,6 @@
         }
         if ($i === 1)
             $i = 2;
-        // print_r($product_list);
         ?>
         <div class="row">
             <div class="col-large-12">
@@ -28,7 +27,7 @@
                         <div class="single_product_item">
                             <img src="'.$s_product['product_image'].'" alt="">
                             <div class="single_product_text">
-                                <h4>'.$s_product['product_name'].'</h4>
+                                <a href="product.php?id='.$s_product['product_ID'].'"><h4>'.$s_product['product_name'].'</h4></a>
                                 <h3>'.$s_product['product_price'].' €</h3>
                                 <a href="#" class="add_cart">+ ajouter au panier</a>
                             </div>

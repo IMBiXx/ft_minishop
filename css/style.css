@@ -503,7 +503,7 @@ p {
 .banner_img {
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: 20px;
 }
 
 .category_banner_img img {
@@ -600,7 +600,7 @@ p {
     font-size: 18px;
 }
 
-.single_product_item .single_product_text a {
+.single_product_item .single_product_text .add_cart {
     color: #ff3368;
     text-transform: uppercase;
     font-size: 17px;
@@ -613,6 +613,10 @@ p {
     transition: 0.5s;
 }
 
+.single_product_item .single_product_text h3 {
+    visibility: hidden;
+}
+
 .single_product_item:hover, .single_category_post_text:hover {
     box-shadow: 0px 10px 20px 0px rgba(0, 23, 51, 0.09)
 }
@@ -621,7 +625,7 @@ p {
     padding: 32px 32px;
 }
 
-.single_product_item:hover a {
+.single_product_item:hover .add_cart, .single_product_item:hover h3 {
     opacity: 1;
     visibility: visible;
 }
