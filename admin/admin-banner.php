@@ -1,4 +1,4 @@
-<section class="banner_part">
+<section class="banner_part admin_banner">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-large-12">
